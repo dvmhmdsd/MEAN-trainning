@@ -1,8 +1,20 @@
 const router = require('express').Router();
+const User = require('../models/user');
 
 // register
-router.get('/register', (req, res) => {
-    res.send('register');
+router.post('/register', (req, res) => {
+    let {name, email, username, password} = req.body;
+    let newUser = new User({
+        name,
+        email,
+        username,
+        password
+    });
+    
+    User.addUser(newUser, (err, user) => {
+        if(err) res.json({success: false, msg: 'failed to register user'});
+        res.json({success: true, msg: 'successed to register user'});
+    })
 });
 
 // auth
@@ -13,11 +25,6 @@ router.get('/auth', (req, res) => {
 // profile
 router.get('/profile', (req, res) => {
     res.send('profile');
-});
-
-// validate
-router.get('/validate', (req, res) => {
-    res.send('valid');
 });
 
 module.exports = router;
