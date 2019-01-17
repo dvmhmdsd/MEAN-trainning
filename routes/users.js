@@ -18,8 +18,24 @@ router.post('/register', (req, res) => {
 });
 
 // auth
-router.get('/auth', (req, res) => {
-    res.send('auth');
+router.get('/auth', (req, res, next) => {
+    const {email, password} = req.body;
+
+    User.gerByUsername(email, (err, user) => {
+        if (err) throw err;
+
+        if(!user) {
+            return res.json({success: false, msg: 'User not found'});
+        }
+
+        User.comparePassword(password, user.password, (err, isMatch) => {
+            if(err) throw err;
+
+            if(isMatch) {
+                
+            }
+        })
+    })
 });
 
 // profile
