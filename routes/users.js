@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const User = require('../models/user');
+const config = require('../config/config');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 // register
 router.post('/register', (req, res) => {
@@ -18,10 +21,10 @@ router.post('/register', (req, res) => {
 });
 
 // auth
-router.get('/auth', (req, res, next) => {
-    const {email, password} = req.body;
+router.post('/auth', (req, res, next) => {
+    const {username, password} = req.body;
 
-    User.gerByUsername(email, (err, user) => {
+    User.getByUsername(username, (err, user) => {
         if (err) throw err;
 
         if(!user) {
@@ -32,7 +35,7 @@ router.get('/auth', (req, res, next) => {
             if(err) throw err;
 
             if(isMatch) {
-                const token = jwt.sign(user, config.user, {
+                const token = jwt.sign(user.toJSON(), config.secret, {
                     expiresIn: 60400 // 1 week
                 });
 
