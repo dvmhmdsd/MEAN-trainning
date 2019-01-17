@@ -32,7 +32,19 @@ router.get('/auth', (req, res, next) => {
             if(err) throw err;
 
             if(isMatch) {
-                
+                const token = jwt.sign(user, config.user, {
+                    expiresIn: 60400 // 1 week
+                });
+
+                res.json({
+                    success: true,
+                    token: `JWT ${token}`,
+                    user: {
+                        name: user.name,
+                        email: user.email,
+                        username: user.username
+                    }
+                });
             }
         })
     })
