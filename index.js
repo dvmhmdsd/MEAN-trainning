@@ -25,9 +25,6 @@ db.on('error', (error) => {
 
 const users = require('./routes/users');
 
-app.get('/', (req, res) => {
-    res.send('Hi !')
-});
 
 // set assets
 app.use(express.static(path.join(__dirname, 'public')));
