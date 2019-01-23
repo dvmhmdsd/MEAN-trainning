@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 
 // set assets
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // allow origin
 app.use(cors());

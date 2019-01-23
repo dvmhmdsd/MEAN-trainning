@@ -54,8 +54,8 @@ router.post('/auth', (req, res, next) => {
 });
 
 // profile
-router.get('/profile', (req, res) => {
-    res.send('profile');
+router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res) => {
+    res.json({user: req.user});
 });
 
 module.exports = router;
