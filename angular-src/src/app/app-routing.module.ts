@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -9,10 +10,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  {path:'dashboard', component: DashboardComponent},
+  {path:'dashboard', canActivate: [AuthGuard], component: DashboardComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent},
+  {path:'profile', canActivate: [AuthGuard], component: ProfileComponent},
   {path:'', redirectTo: '', pathMatch: 'full'},
   {path:'**', component: NotfoundComponent},
 ];
