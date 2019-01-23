@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -12,13 +13,20 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor() { }
+  constructor(private toaster: ToastrService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     const {name, username, email, password} = this;
+    this.click();
+  }
+
+  click() {
+    this.toaster.success('Submit', 'Form submitted', {
+      timeOut: 30000
+    });
   }
 
 }
