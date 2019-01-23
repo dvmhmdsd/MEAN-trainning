@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.ng-valid[required], .ng-valid.required  {
+    border: 2px solid #42A948; /* green */
+}
+
+.ng-touched:not(form)  {
+    border: 2px solid #a94442; /* red */
+}
+
+@import '~ngx-toastr/toastr.css';
+ 
+@import '~ngx-toastr/toastr-bs4-alert';
