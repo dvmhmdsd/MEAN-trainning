@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:4000/users/auth', user, {headers})
       .map(res => res.json());
+  }
+
+  loggedIn() {
+    return tokenNotExpired('id_token');
   }
 
   getProfile() {

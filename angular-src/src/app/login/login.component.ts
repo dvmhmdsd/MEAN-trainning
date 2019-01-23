@@ -25,10 +25,16 @@ export class LoginComponent implements OnInit {
     this.auth.login(user).subscribe(data => {
       if (data.success) {
           this.auth.storeData(data.token, data.user);
-          this.toaster.success(data.msg, 'Login');
+          this.toaster.success(data.msg, 'Login', {
+            timeOut: 2000,
+            positionClass: 'toast-bottom-left'
+          });
           this.router.navigate(['/dashboard']);
       } else {
-        this.toaster.error(data.msg, 'Login');
+        this.toaster.error(data.msg, 'Login', {
+          timeOut: 2000,
+          positionClass: 'toast-bottom-left'
+        });
         this.router.navigate(['/login']);
       }
     });

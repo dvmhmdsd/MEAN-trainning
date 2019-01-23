@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
 
   success() {
     this.toaster.success('Submit', 'Form submitted', {
-      timeOut: 30000
+      timeOut: 2000,
+      positionClass: 'toast-bottom-left'
     });
   }
 

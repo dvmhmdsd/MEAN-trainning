@@ -17,7 +17,10 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.auth.logout();
-    this.toaster.success('Logged out successfully', 'Logout');
+    this.toaster.success('Logged out successfully', 'Logout', {
+      timeOut: 2000,
+      positionClass: 'toast-bottom-left'
+    });
     this.router.navigate(['/login']);
     return false;
   }
