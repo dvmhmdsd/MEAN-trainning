@@ -26,6 +26,19 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  getProfile() {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.token);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:4000/users/profile', {headers})
+      .map(res => res.json());
+  }
+
+  loadToken() {
+    this.token = localStorage.getItem('id_token'); 
+  }
+
   storeData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user)); // localstorage doesn't store objects, just string
