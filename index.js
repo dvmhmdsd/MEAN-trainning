@@ -54,7 +54,11 @@ app.use('/users', users);
     next();
 }); */
 
-const PORT = process.env.PORT || 4000;
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+const PORT = process.env.PORT || 4200;
 app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 });
