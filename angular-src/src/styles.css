@@ -10,3 +10,7 @@
 .toast {
     opacity: 1;
 }
+
+.nav-link {
+    cursor: pointer;
+}

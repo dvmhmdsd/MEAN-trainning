@@ -48,6 +48,8 @@ router.post('/auth', (req, res, next) => {
                         username: user.username
                     }
                 });
+            } else {
+                return res.json({success: false, msg: 'The password is wrong'});
             }
         })
     })
